@@ -17,7 +17,7 @@ namespace LiveSplit.DXLoads
 
 		public string UpdateName => ComponentName;
 
-		public string UpdateURL => "";
+		public string UpdateURL => "https://raw.githubusercontent.com/SuiMachine/LiveSplit.DXLoads/master/";
 
 		public Version Version => Assembly.GetExecutingAssembly().GetName().Version;
 
