@@ -59,6 +59,8 @@ namespace LiveSplit.DXLoads
 			_timer.Split();
 		}
 
+		string oldMap = "";
+
 		void _gameMemory_OnMapChange(object sender, string map)
 		{
 			map = map.ToLower();
@@ -70,12 +72,13 @@ namespace LiveSplit.DXLoads
 				else
 					Settings.Maps.TryGetValue(map, out enabled);
 
-				if (enabled)
+				if (enabled && map != oldMap)
 				{
 					_timer.Split();
 					_splitHistory.Add(map);
 				}
 			}
+			oldMap = map;
 
 #if DEBUG
 			if (Settings.DbgShowMap)
