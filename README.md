@@ -1,5 +1,5 @@
 # LiveSplit.DXLoads
-Load removal and autosplitting for some Deus Ex old Unreal Engine games.
+Load removal and autosplitting component for Deus Ex based of Dalet's [UnrealLoads](https://github.com/Dalet/LiveSplit.UnrealLoads/).
 
 Installation
 ------------
@@ -8,6 +8,7 @@ Installation
 3. Click Activate.
 4. Autosplitting can be activated in the settings (not available for all games).
 
-Contact
+Credits
 -------
-* [Twitter](https://twitter.com/Dalleth_)
+* [SuicideMachine](https://www.twitch.tv/suicidemachine)
+* [Dalet](https://github.com/Dalet)
