@@ -21,6 +21,6 @@ namespace LiveSplit.DXLoads
 
 		public Version Version => Assembly.GetExecutingAssembly().GetName().Version;
 
-		public string XMLURL => UpdateURL + "Components/update.LiveSplit.DXLoads.xml";
+		public string XMLURL => UpdateURL + "Components/update.LiveSplit.DX.xml";
 	}
 }
