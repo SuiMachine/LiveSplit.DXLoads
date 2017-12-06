@@ -1,47 +1,69 @@
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
+*.sublime-workspace
+*.rar
+*.sdf
 
-# Folder config file
-Desktop.ini
+# NuGet Packages
+*.nupkg
+# The packages folder can be ignored because of Package Restore
+**/packages/*
+# except build/, which is used as an MSBuild target.
+#!**/packages/build/
+# Uncomment if necessary however generally it will be regenerated when needed
+#!**/packages/repositories.config
+# NuGet v3's project.json files produces more ignoreable files
+*.nuget.props
+*.nuget.targets
 
-# Recycle Bin used on file shares
-$RECYCLE.BIN/
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
 
-# Windows Installer files
-*.cab
-*.msi
-*.msm
-*.msp
+# Visual Studio profiler
+*.psess
+*.vsp
+*.vspx
+*.sap
 
-# Windows shortcuts
-*.lnk
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
 
-# =========================
-# Operating System Files
-# =========================
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+*.ipdb
+*.iobj
 
-# OSX
-# =========================
+# Precompiled Headers
+*.gch
+*.pch
 
-.DS_Store
-.AppleDouble
-.LSOverride
+# Compiled Dynamic libraries
+*.so
+*.dylib
 
-# Thumbnails
-._*
+# Fortran module files
+*.mod
 
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
 
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
+# Executables
+*.exe
+*.out
+*.app
