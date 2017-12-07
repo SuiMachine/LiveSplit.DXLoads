@@ -19,7 +19,7 @@ namespace LiveSplit.DXLoads.Games
 			"deusex"
 		};
 
-		public override Type SaveGameDetourT => typeof(SaveGameDetour_DeusEx);
+		public override Type SaveGameDetourT => typeof(SaveGameDetour);
 
 		StringWatcher _map;
 
@@ -119,52 +119,7 @@ namespace LiveSplit.DXLoads.Games
 					return new TimerAction[] { TimerAction.Start };
 			}
 
-
 			return null;
-		}
-
-		class SaveGameDetour_DeusEx : SaveGameDetour
-		{
-			public new static string Symbol => "?SaveCurrentLevel@DDeusExGameEngine@@QAEXH_N@Z";
-			public new static string Module => "DeusEx.dll";
-
-			public SaveGameDetour_DeusEx(IntPtr statusAddr) : base(statusAddr)
-			{
-				_statusPtr = statusAddr;
-			}
-
-			public override byte[] GetBytes()
-			{
-				var status = _statusPtr.ToBytes().ToHex();
-				var none = Status.None.ToBytes().ToHex();
-				var saving = Status.Saving.ToBytes().ToHex();
-
-
-				var str = string.Join("\n",
-					"55",                            //push ebp
-					"8B EC",                         //mov ebp,esp
-					"83 EC 08",                      //sub esp,8
-					"89 55 F8",                      //mov dword ptr ss:[ebp-8],edx
-					"89 4D FC",                      //mov dword ptr ss:[ebp-4],ecx
-					"C7 05 " + status + saving,      //mov dword ptr ds:[<g_status>],2
-					"0F B6 45 0C",                   //movzx eax,byte ptr ss:[ebp+C]
-					"50",                            //push eax
-					"8B 4D 08",                      //mov ecx,dword ptr ss:[ebp+8]
-					"51",                            //push ecx
-					"8B 4D FC",                      //mov ecx,dword ptr ss:[ebp-4]
-					"#FF FF FF FF FF",               //call dword ptr ds:[118378C]
-					"C7 05 " + status + none,		 //mov dword ptr ds:[<g_status>],0
-					"8B E5",                         //mov esp,ebp
-					"5D",                            //pop ebp
-					"C2 08 00"                       //ret 8
-				);
-
-				int[] offsets;
-				var bytes = Utils.ParseBytes(str, out offsets);
-				_originalFuncCallOffset = offsets[0];
-
-				return bytes.ToArray();
-			}
 		}
 	}
 }
