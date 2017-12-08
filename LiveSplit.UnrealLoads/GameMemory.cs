@@ -26,8 +26,10 @@ namespace LiveSplit.DXLoads
 		public static readonly GameSupport[] SupportedGames = new GameSupport[]
 		{
 			new DeusEx(),
+			new GMDX(),
 			new Nihilum(),
-			new Revision()
+			new Revision(),
+			new TNM()
 		};
 
 		public static readonly string[] SupportedProcessesNames =
