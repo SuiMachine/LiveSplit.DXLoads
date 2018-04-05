@@ -43,7 +43,6 @@ namespace LiveSplit.DXLoads.Games
 			"03_nyc_airfieldhelibase",
 			"03_nyc_airfield",
 			"03_nyc_hangar",
-			"03_nyc_airfield",
 			"04_nyc_unatcoisland",
 			"04_nyc_unatcohq",
 			"04_nyc_street",

@@ -36,6 +36,9 @@
   <PropertyGroup>
     <RootNamespace>LiveSplit.DXLoads</RootNamespace>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="LiveSplit.Core">
       <HintPath>C:\LiveSplit\LiveSplit.Core.dll</HintPath>
