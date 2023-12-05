@@ -42,13 +42,13 @@ namespace LiveSplit.DXLoads
 			cbGame.DataSource = GameMemory.SupportedGames.Select(s => s.GetType()).ToList();
 			cbGame.DisplayMember = "Name";
 
-			chkAutoStart.DataBindings.Add("Checked", this, "AutoStart", false, DataSourceUpdateMode.OnPropertyChanged);
-			chkAutoReset.DataBindings.Add("Checked", this, "AutoReset", false, DataSourceUpdateMode.OnPropertyChanged);
-			rbAutoSplitOnMapChange.DataBindings.Add("Checked", this, "AutoSplitOnMapChange", false, DataSourceUpdateMode.OnPropertyChanged);
-			rbAutoSplitExceptOnRepeatMaps.DataBindings.Add("Checked", this, "AutoSplitExceptOnRepeatMaps", false, DataSourceUpdateMode.OnPropertyChanged);
-			rbNoAutoSplit.DataBindings.Add("Checked", this, "NoAutoSplit", false, DataSourceUpdateMode.OnPropertyChanged);
-			gbMapWhitelist.DataBindings.Add("Enabled", this, "Whitelist", false, DataSourceUpdateMode.OnPropertyChanged);
-			chkDbgShowMap.DataBindings.Add("Checked", this, "DbgShowMap", false, DataSourceUpdateMode.OnPropertyChanged);
+			chkAutoStart.DataBindings.Add("Checked", this, nameof(AutoStart), false, DataSourceUpdateMode.OnPropertyChanged);
+			chkAutoReset.DataBindings.Add("Checked", this, nameof(AutoReset), false, DataSourceUpdateMode.OnPropertyChanged);
+			rbAutoSplitOnMapChange.DataBindings.Add("Checked", this, nameof(AutoSplitOnMapChange), false, DataSourceUpdateMode.OnPropertyChanged);
+			rbAutoSplitExceptOnRepeatMaps.DataBindings.Add("Checked", this, nameof(AutoSplitExceptOnRepeatMaps), false, DataSourceUpdateMode.OnPropertyChanged);
+			rbNoAutoSplit.DataBindings.Add("Checked", this, nameof(NoAutoSplit), false, DataSourceUpdateMode.OnPropertyChanged);
+			gbMapWhitelist.DataBindings.Add("Enabled", this, nameof(Whitelist), false, DataSourceUpdateMode.OnPropertyChanged);
+			chkDbgShowMap.DataBindings.Add("Checked", this, nameof(DbgShowMap), false, DataSourceUpdateMode.OnPropertyChanged);
 
 			// defaults
 			AutoStart = DEFAULT_AUTOSTART;
@@ -93,12 +93,12 @@ namespace LiveSplit.DXLoads
 			XmlElement settingsNode = doc.CreateElement("Settings");
 
 			settingsNode.AppendChild(SettingsHelper.ToElement(doc, "Version", Assembly.GetExecutingAssembly().GetName().Version.ToString(3)));
-			settingsNode.AppendChild(SettingsHelper.ToElement(doc, "AutoStart", AutoStart));
-			settingsNode.AppendChild(SettingsHelper.ToElement(doc, "AutoReset", AutoReset));
-			settingsNode.AppendChild(SettingsHelper.ToElement(doc, "AutoSplitOnMapChange", AutoSplitOnMapChange));
-			settingsNode.AppendChild(SettingsHelper.ToElement(doc, "AutoSplitExceptOnRepeatMaps", AutoSplitExceptOnRepeatMaps));
-			settingsNode.AppendChild(SettingsHelper.ToElement(doc, "NoAutoSplit", NoAutoSplit));
-			settingsNode.AppendChild(SettingsHelper.ToElement(doc, "Whitelist", Whitelist));
+			settingsNode.AppendChild(SettingsHelper.ToElement(doc, nameof(AutoStart), AutoStart));
+			settingsNode.AppendChild(SettingsHelper.ToElement(doc, nameof(AutoReset), AutoReset));
+			settingsNode.AppendChild(SettingsHelper.ToElement(doc, nameof(AutoSplitOnMapChange), AutoSplitOnMapChange));
+			settingsNode.AppendChild(SettingsHelper.ToElement(doc, nameof(AutoSplitExceptOnRepeatMaps), AutoSplitExceptOnRepeatMaps));
+			settingsNode.AppendChild(SettingsHelper.ToElement(doc, nameof(NoAutoSplit), NoAutoSplit));
+			settingsNode.AppendChild(SettingsHelper.ToElement(doc, nameof(Whitelist), Whitelist));
 			settingsNode.AppendChild(SettingsHelper.ToElement(doc, "Game", ((Type)cbGame.SelectedItem).Name));
 
 			var mapsNode = settingsNode.AppendChild(doc.CreateElement("MapWhitelist"));
@@ -116,12 +116,12 @@ namespace LiveSplit.DXLoads
 		{
 			var element = (XmlElement)settings;
 
-			AutoStart = SettingsHelper.ParseBool(settings["AutoStart"], DEFAULT_AUTOSTART);
-			AutoReset = SettingsHelper.ParseBool(settings["AutoReset"], DEFAULT_AUTOSTART);
-			AutoSplitOnMapChange = SettingsHelper.ParseBool(settings["AutoSplitOnMapChange"], DEFAULT_AUTOSPLITONMAPCHANGE);
-			AutoSplitExceptOnRepeatMaps = SettingsHelper.ParseBool(settings["AutoSplitExceptOnRepeatMaps"], DEFAULT_AUTOSPLITEXCEPTONREPEATMAPS);
-			NoAutoSplit = SettingsHelper.ParseBool(settings["NoAutoSplit"], DEFAULT_NOAUTOSPLIT);
-			Whitelist = SettingsHelper.ParseBool(settings["Whitelist"], DEFAULT_WHITELIST);
+			AutoStart = SettingsHelper.ParseBool(settings[nameof(AutoStart)], DEFAULT_AUTOSTART);
+			AutoReset = SettingsHelper.ParseBool(settings[nameof(AutoReset)], DEFAULT_AUTOSTART);
+			AutoSplitOnMapChange = SettingsHelper.ParseBool(settings[nameof(AutoSplitOnMapChange)], DEFAULT_AUTOSPLITONMAPCHANGE);
+			AutoSplitExceptOnRepeatMaps = SettingsHelper.ParseBool(settings[nameof(AutoSplitExceptOnRepeatMaps)], DEFAULT_AUTOSPLITEXCEPTONREPEATMAPS);
+			NoAutoSplit = SettingsHelper.ParseBool(settings[nameof(NoAutoSplit)], DEFAULT_NOAUTOSPLIT);
+			Whitelist = SettingsHelper.ParseBool(settings[nameof(Whitelist)], DEFAULT_WHITELIST);
 
 			Type game = null;
 			if (!string.IsNullOrWhiteSpace(settings["Game"]?.InnerText))
