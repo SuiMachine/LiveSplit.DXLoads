@@ -4,7 +4,9 @@
       <file path="Components/LiveSplit.DX.dll" status="changed"/>
     </files>
     <changelog>
-      <change>Splits on map change even if map has been visited before.</change>
+      <change>Added radio buttons to select different auto split behaviors
+      (auto split on map change, auto split on map change except for repeat maps, and 
+      no auto split/manual splits).</change>
       <change>Added "03_nyc_747" to list of maps.</change>
     </changelog>
   </update>
