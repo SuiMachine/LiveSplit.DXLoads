@@ -1,40 +1,44 @@
 ﻿namespace LiveSplit.DXLoads
 {
-    partial class DXLoadsSettings
-    {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+	partial class DXLoadsSettings
+	{
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 
-        #region Component Designer generated code
+		#region Component Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
 			this.tlpMain = new System.Windows.Forms.TableLayoutPanel();
 			this.gbStartSplits = new System.Windows.Forms.GroupBox();
 			this.tlpStartSplits = new System.Windows.Forms.TableLayoutPanel();
 			this.chkAutoStart = new System.Windows.Forms.CheckBox();
 			this.chkAutoReset = new System.Windows.Forms.CheckBox();
-			this.chkSplitOnNewMap = new System.Windows.Forms.CheckBox();
 			this.chkDbgShowMap = new System.Windows.Forms.CheckBox();
+			this.gbAutoSplitBehavior = new System.Windows.Forms.GroupBox();
+			this.tlpAutoSplitBehavior = new System.Windows.Forms.TableLayoutPanel();
+			this.rbAutoSplitOnMapChange = new System.Windows.Forms.RadioButton();
+			this.rbAutoSplitExceptOnRepeatMaps = new System.Windows.Forms.RadioButton();
+			this.rbNoAutoSplit = new System.Windows.Forms.RadioButton();
 			this.gbMapWhitelist = new System.Windows.Forms.GroupBox();
 			this.tlpMapWhitelist = new System.Windows.Forms.TableLayoutPanel();
 			this.chklbMapSet = new System.Windows.Forms.CheckedListBox();
@@ -49,6 +53,8 @@
 			this.tlpMain.SuspendLayout();
 			this.gbStartSplits.SuspendLayout();
 			this.tlpStartSplits.SuspendLayout();
+			this.gbAutoSplitBehavior.SuspendLayout();
+			this.tlpAutoSplitBehavior.SuspendLayout();
 			this.gbMapWhitelist.SuspendLayout();
 			this.tlpMapWhitelist.SuspendLayout();
 			this.tlpGameSelection.SuspendLayout();
@@ -62,7 +68,8 @@
 			this.tlpMain.ColumnCount = 1;
 			this.tlpMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tlpMain.Controls.Add(this.gbStartSplits, 0, 0);
-			this.tlpMain.Controls.Add(this.gbMapWhitelist, 0, 1);
+			this.tlpMain.Controls.Add(this.gbAutoSplitBehavior, 0, 1);
+			this.tlpMain.Controls.Add(this.gbMapWhitelist, 0, 2);
 			this.tlpMain.Dock = System.Windows.Forms.DockStyle.Top;
 			this.tlpMain.Location = new System.Drawing.Point(7, 7);
 			this.tlpMain.Name = "tlpMain";
@@ -94,8 +101,7 @@
 			this.tlpStartSplits.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tlpStartSplits.Controls.Add(this.chkAutoStart, 0, 0);
 			this.tlpStartSplits.Controls.Add(this.chkAutoReset, 0, 1);
-			this.tlpStartSplits.Controls.Add(this.chkSplitOnNewMap, 0, 2);
-			this.tlpStartSplits.Controls.Add(this.chkDbgShowMap, 0, 3);
+			this.tlpStartSplits.Controls.Add(this.chkDbgShowMap, 0, 2);
 			this.tlpStartSplits.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tlpStartSplits.Location = new System.Drawing.Point(3, 16);
 			this.tlpStartSplits.Name = "tlpStartSplits";
@@ -131,26 +137,86 @@
 			this.chkAutoReset.Text = "Automatic Reset";
 			this.chkAutoReset.UseVisualStyleBackColor = true;
 			// 
-			// chkSplitOnNewMap
-			// 
-			this.chkSplitOnNewMap.AutoSize = true;
-			this.chkSplitOnNewMap.Location = new System.Drawing.Point(3, 49);
-			this.chkSplitOnNewMap.Name = "chkSplitOnNewMap";
-			this.chkSplitOnNewMap.Size = new System.Drawing.Size(175, 17);
-			this.chkSplitOnNewMap.TabIndex = 6;
-			this.chkSplitOnNewMap.Text = "Automatic Split on Map Change";
-			this.chkSplitOnNewMap.UseVisualStyleBackColor = true;
-			// 
 			// chkDbgShowMap
 			// 
 			this.chkDbgShowMap.AutoSize = true;
-			this.chkDbgShowMap.Location = new System.Drawing.Point(3, 72);
+			this.chkDbgShowMap.Location = new System.Drawing.Point(3, 95);
 			this.chkDbgShowMap.Name = "chkDbgShowMap";
-			this.chkDbgShowMap.Size = new System.Drawing.Size(188, 17);
-			this.chkDbgShowMap.TabIndex = 7;
+			this.chkDbgShowMap.Size = new System.Drawing.Size(201, 17);
+			this.chkDbgShowMap.TabIndex = 8;
 			this.chkDbgShowMap.Text = "Debug: Show Map Name on Load";
 			this.chkDbgShowMap.UseVisualStyleBackColor = true;
 			this.chkDbgShowMap.Visible = false;
+			//
+			// gbAutoSplitBehavior
+			//
+			this.gbAutoSplitBehavior.AutoSize = true;
+			this.gbAutoSplitBehavior.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.gbAutoSplitBehavior.Controls.Add(this.tlpAutoSplitBehavior);
+			this.gbAutoSplitBehavior.Dock = System.Windows.Forms.DockStyle.Top;
+			this.gbAutoSplitBehavior.Location = new System.Drawing.Point(3, 143);
+			this.gbAutoSplitBehavior.Name = "gbAutoSplitBehavior";
+			this.gbAutoSplitBehavior.Size = new System.Drawing.Size(456, 55);
+			this.gbAutoSplitBehavior.TabIndex = 6;
+			this.gbAutoSplitBehavior.TabStop = false;
+			this.gbAutoSplitBehavior.Text = "Automatic Split Behavior";
+			// 
+			// tlpAutoSplitBehavior
+			// 
+			this.tlpAutoSplitBehavior.AutoSize = true;
+			this.tlpAutoSplitBehavior.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.tlpAutoSplitBehavior.BackColor = System.Drawing.Color.Transparent;
+			this.tlpAutoSplitBehavior.ColumnCount = 1;
+			this.tlpAutoSplitBehavior.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+			this.tlpAutoSplitBehavior.Controls.Add(this.rbAutoSplitOnMapChange, 0, 0);
+			this.tlpAutoSplitBehavior.Controls.Add(this.rbAutoSplitExceptOnRepeatMaps, 0, 1);
+			this.tlpAutoSplitBehavior.Controls.Add(this.rbNoAutoSplit, 0, 2);
+			this.tlpAutoSplitBehavior.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.tlpAutoSplitBehavior.Location = new System.Drawing.Point(3, 16);
+			this.tlpAutoSplitBehavior.Name = "tlpAutoSplitBehavior";
+			this.tlpAutoSplitBehavior.RowCount = 4;
+			this.tlpAutoSplitBehavior.RowStyles.Add(new System.Windows.Forms.RowStyle());
+			this.tlpAutoSplitBehavior.RowStyles.Add(new System.Windows.Forms.RowStyle());
+			this.tlpAutoSplitBehavior.RowStyles.Add(new System.Windows.Forms.RowStyle());
+			this.tlpAutoSplitBehavior.RowStyles.Add(new System.Windows.Forms.RowStyle());
+			this.tlpAutoSplitBehavior.Size = new System.Drawing.Size(450, 92);
+			this.tlpAutoSplitBehavior.TabIndex = 4;
+			// 
+			// rbAutoSplitOnMapChange
+			// 
+			this.rbAutoSplitOnMapChange.AutoSize = true;
+			this.rbAutoSplitOnMapChange.Checked = true;
+			this.rbAutoSplitOnMapChange.Location = new System.Drawing.Point(3, 72);
+			this.rbAutoSplitOnMapChange.Name = "rbAutoSplitOnMapChange";
+			this.rbAutoSplitOnMapChange.Size = new System.Drawing.Size(122, 17);
+			this.rbAutoSplitOnMapChange.TabIndex = 6;
+			this.rbAutoSplitOnMapChange.Text = "Automatic Split on Map Change";
+			this.rbAutoSplitOnMapChange.CheckedChanged += new System.EventHandler(rb_CheckedChanged);
+			this.rbAutoSplitOnMapChange.UseVisualStyleBackColor = true;
+			// 
+			// rbAutoSplitExceptOnRepeatMaps
+			// 
+			this.rbAutoSplitExceptOnRepeatMaps.AutoSize = true;
+			this.rbAutoSplitExceptOnRepeatMaps.Checked = true;
+			this.rbAutoSplitExceptOnRepeatMaps.Location = new System.Drawing.Point(3, 95);
+			this.rbAutoSplitExceptOnRepeatMaps.Name = "rbAutoSplitExceptOnRepeatMaps";
+			this.rbAutoSplitExceptOnRepeatMaps.Size = new System.Drawing.Size(128, 17);
+			this.rbAutoSplitExceptOnRepeatMaps.TabIndex = 7;
+			this.rbAutoSplitExceptOnRepeatMaps.Text = "Automatic Split Except on Repeat Maps (old behavior)";
+			this.rbAutoSplitExceptOnRepeatMaps.CheckedChanged += new System.EventHandler(rb_CheckedChanged);
+			this.rbAutoSplitExceptOnRepeatMaps.UseVisualStyleBackColor = true;
+			// 
+			// rbNoAutoSplit
+			// 
+			this.rbNoAutoSplit.AutoSize = true;
+			this.rbNoAutoSplit.Checked = true;
+			this.rbNoAutoSplit.Location = new System.Drawing.Point(3, 72);
+			this.rbNoAutoSplit.Name = "rbNoAutoSplit";
+			this.rbNoAutoSplit.Size = new System.Drawing.Size(122, 17);
+			this.rbNoAutoSplit.TabIndex = 6;
+			this.rbNoAutoSplit.Text = "No Automatic Split (manual splits)";
+			this.rbNoAutoSplit.CheckedChanged += new System.EventHandler(rb_CheckedChanged);
+			this.rbNoAutoSplit.UseVisualStyleBackColor = true;
 			// 
 			// gbMapWhitelist
 			// 
@@ -159,7 +225,7 @@
 			this.gbMapWhitelist.Controls.Add(this.tlpMapWhitelist);
 			this.gbMapWhitelist.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.gbMapWhitelist.Enabled = false;
-			this.gbMapWhitelist.Location = new System.Drawing.Point(3, 120);
+			this.gbMapWhitelist.Location = new System.Drawing.Point(3, 143);
 			this.gbMapWhitelist.Name = "gbMapWhitelist";
 			this.gbMapWhitelist.Size = new System.Drawing.Size(456, 217);
 			this.gbMapWhitelist.TabIndex = 6;
@@ -311,6 +377,10 @@
 			this.gbStartSplits.PerformLayout();
 			this.tlpStartSplits.ResumeLayout(false);
 			this.tlpStartSplits.PerformLayout();
+			this.gbAutoSplitBehavior.ResumeLayout(false);
+			this.gbAutoSplitBehavior.PerformLayout();
+			this.tlpAutoSplitBehavior.ResumeLayout(false);
+			this.tlpAutoSplitBehavior.PerformLayout();
 			this.gbMapWhitelist.ResumeLayout(false);
 			this.gbMapWhitelist.PerformLayout();
 			this.tlpMapWhitelist.ResumeLayout(false);
@@ -321,17 +391,20 @@
 			this.tlpMapSetEdit.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
+		}
 
-        }
+		#endregion
 
-        #endregion
-
-        private System.Windows.Forms.TableLayoutPanel tlpMain;
-        private System.Windows.Forms.GroupBox gbStartSplits;
-        private System.Windows.Forms.TableLayoutPanel tlpStartSplits;
-        private System.Windows.Forms.CheckBox chkAutoStart;
-        private System.Windows.Forms.CheckBox chkAutoReset;
-		private System.Windows.Forms.CheckBox chkSplitOnNewMap;
+		private System.Windows.Forms.TableLayoutPanel tlpMain;
+		private System.Windows.Forms.GroupBox gbStartSplits;
+		private System.Windows.Forms.TableLayoutPanel tlpStartSplits;
+		private System.Windows.Forms.CheckBox chkAutoStart;
+		private System.Windows.Forms.CheckBox chkAutoReset;
+		private System.Windows.Forms.GroupBox gbAutoSplitBehavior;
+		private System.Windows.Forms.TableLayoutPanel tlpAutoSplitBehavior;
+		private System.Windows.Forms.RadioButton rbAutoSplitOnMapChange;
+		private System.Windows.Forms.RadioButton rbAutoSplitExceptOnRepeatMaps;
+		private System.Windows.Forms.RadioButton rbNoAutoSplit;
 		private System.Windows.Forms.GroupBox gbMapWhitelist;
 		private System.Windows.Forms.TableLayoutPanel tlpMapWhitelist;
 		private System.Windows.Forms.CheckBox chkDbgShowMap;

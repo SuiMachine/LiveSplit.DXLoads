@@ -64,7 +64,7 @@ namespace LiveSplit.DXLoads
 		void _gameMemory_OnMapChange(object sender, string map)
 		{
 			map = map.ToLower();
-			if (Settings.AutoSplitOnMapChange && !_splitHistory.Contains(map))
+			if (Settings.AutoSplitOnMapChange)
 			{
 				var enabled = false;
 				if (Settings.Maps.Count == 0)
@@ -77,6 +77,26 @@ namespace LiveSplit.DXLoads
 					_timer.Split();
 					_splitHistory.Add(map);
 				}
+			}
+
+			if (Settings.AutoSplitExceptOnRepeatMaps && !_splitHistory.Contains(map))
+			{
+				var enabled = false;
+				if (Settings.Maps.Count == 0)
+					enabled = true;
+				else
+					Settings.Maps.TryGetValue(map, out enabled);
+
+				if (enabled && map != oldMap)
+				{
+					_timer.Split();
+					_splitHistory.Add(map);
+				}
+			}
+
+			if (Settings.NoAutoSplit)
+			{
+				return;
 			}
 			oldMap = map;
 

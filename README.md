@@ -12,3 +12,4 @@ Credits
 -------
 * [SuicideMachine](https://www.twitch.tv/suicidemachine)
 * [Dalet](https://github.com/Dalet)
+* [pancaketaicho](https://www.twitch.tv/pancaketaicho)
