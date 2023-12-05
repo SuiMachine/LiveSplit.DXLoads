@@ -1,11 +1,20 @@
 <updates>
+  <update version="1.4">
+    <files>
+      <file path="Components/LiveSplit.DX.dll" status="changed"/>
+    </files>
+    <changelog>
+      <change>Splits on map change even if map has been visited before.</change>
+      <change>Added "03_nyc_747" to list of maps.</change>
+    </changelog>
+  </update>
   <update version="1.3">
     <files>
       <file path="Components/LiveSplit.DX.dll" status="changed"/>
     </files>
     <changelog>
       <change>Added support for GMDX.</change>
-	  <change>Added support for The Nameless Mod.</change>
+	    <change>Added support for The Nameless Mod.</change>
     </changelog>
   </update>
   <update version="1.2">
