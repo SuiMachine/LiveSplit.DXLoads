@@ -205,6 +205,74 @@ namespace LiveSplit.DXLoads
 		}
 	}
 
+	public class LoadMapDetourHX : Detour
+	{
+		public new static string Symbol => "?LoadMap@UHXGameEngine@@UAEPAVULevel@@ABVFURL@@PAVUPendingLevel@@PBV?$TMap@VFString@@V1@@@AAVFString@@@Z";
+		public new static string Module => "hx.dll";
+
+		protected int _setMapCallOffset;
+		protected IntPtr _setMapPtr;
+		protected IntPtr _statusPtr;
+
+		public override void Install(Process process, IntPtr funcToDetour)
+		{
+			base.Install(process, funcToDetour);
+			process.WriteCallInstruction(InjectedFuncPtr + _setMapCallOffset, _setMapPtr);
+		}
+
+		public LoadMapDetourHX(IntPtr setMapAddr, IntPtr statusAddr)
+		{
+			_setMapPtr = setMapAddr;
+			_statusPtr = statusAddr;
+		}
+
+		public override byte[] GetBytes()
+		{
+			var status = _statusPtr.ToBytes().ToHex();
+			var none = Status.None.ToBytes().ToHex();
+			var loadingMap = Status.LoadingMap.ToBytes().ToHex();
+
+			var str = string.Join("\n",
+				"55",                           // push ebp
+				"8B EC",                        // mov ebp,esp
+				"83 EC 10",                     // sub esp,10
+				"89 55 F0",                     // mov dword ptr ds:[ebp-10],edx
+				"89 4D F8",                     // mov dword ptr ds:[ebp-8],ecx
+				"8B 45 08",                     // mov eax,dword ptr ds:[ebp+8]
+				"8B 48 1C",                     // mov ecx,dword ptr ds:[eax+1C]
+				"89 4D FC",                     // mov dword ptr ds:[ebp-4],ecx
+				"8B 55 FC",                     // mov edx,dword ptr ds:[ebp-4]
+				"52",                           // push edx
+				"#FF FF FF FF FF",              // call set_map
+				"83 C4 04",                     // add esp,4
+				"C7 05 " + status + loadingMap, // mov dword ptr ds:[<?g_status@@3HA>],1
+				"8B 45 14",                     // mov eax,dword ptr ds:[ebp+14]
+				"50",                           // push eax
+				"8B 4D 10",                     // mov ecx,dword ptr ds:[ebp+10]
+				"51",                           // push ecx
+				"8B 55 0C",                     // mov edx,dword ptr ds:[ebp+C]
+				"52",                           // push edx
+				"8B 45 08",                     // mov eax,dword ptr ds:[ebp+8]
+				"50",                           // push eax
+				"8B 4D F8",                     // mov ecx,dword ptr ds:[ebp-8]
+				"#FF FF FF FF FF",              // call dword ptr ds:[B3780]
+				"89 45 F4",                     // mov dword ptr ds:[ebp-C],eax
+				"C7 05 " + status + none,       // mov dword ptr ds:[<?g_status@@3HA>],0
+				"8B 45 F4",                     // mov eax,dword ptr ds:[ebp-C]
+				"8B E5",                        // mov esp,ebp
+				"5D",                           // pop ebp
+				"C2 10 00"                      // ret 10
+			);
+
+			int[] offsets;
+			var bytes = Utils.ParseBytes(str, out offsets);
+			_setMapCallOffset = offsets[0];
+			_originalFuncCallOffset = offsets[1];
+
+			return bytes.ToArray();
+		}
+	}
+
 	public class SaveGameDetour : Detour
 	{
 		public new static string Symbol => "?SaveCurrentLevel@DDeusExGameEngine@@QAEXH_N@Z";
