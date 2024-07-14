@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="ExportTableParser.cs" />
     <Compile Include="GameMemory.cs" />
+    <Compile Include="Games\HX.cs" />
     <Compile Include="Games\TNM.cs" />
     <Compile Include="Games\GMDX.cs" />
     <Compile Include="Games\Revision.cs" />

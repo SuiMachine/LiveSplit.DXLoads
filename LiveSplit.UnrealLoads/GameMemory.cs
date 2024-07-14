@@ -27,6 +27,7 @@ namespace LiveSplit.DXLoads
 		{
 			new DeusEx(),
 			new GMDX(),
+			new HX(),
 			new Nihilum(),
 			new Revision(),
 			new TNM()

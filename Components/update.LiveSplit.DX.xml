@@ -1,4 +1,12 @@
 <updates>
+  <update version="1.5">
+    <files>
+      <file path="Components/LiveSplit.DX.dll" status="changed"/>
+    </files>
+    <changelog>
+      <change>Added test support for HX COOP mod.</change>
+    </changelog>
+  </update>
   <update version="1.4">
     <files>
       <file path="Components/LiveSplit.DX.dll" status="changed"/>

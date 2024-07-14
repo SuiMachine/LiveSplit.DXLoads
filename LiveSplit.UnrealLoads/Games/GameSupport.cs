@@ -35,14 +35,14 @@ namespace LiveSplit.DXLoads.Games
 
 		public virtual Type SaveGameDetourT => typeof(SaveGameDetour);
 
-		public LoadMapDetour GetLoadMapHook(Process game, IntPtr setMapPtr, IntPtr statusPtr)
+		public Detour GetLoadMapHook(Process game, IntPtr setMapPtr, IntPtr statusPtr)
 		{
 			if (LoadMapDetourT == null)
 				throw new Exception("No LoadMapDetour type defined");
 
 			var originalPtr = Detour.FindExportedFunc(LoadMapDetourT, game);
 			if (originalPtr != IntPtr.Zero)
-				return (LoadMapDetour)Activator.CreateInstance(LoadMapDetourT, setMapPtr, statusPtr);
+				return (Detour)Activator.CreateInstance(LoadMapDetourT, setMapPtr, statusPtr);
 			else
 				return null;
 		}
