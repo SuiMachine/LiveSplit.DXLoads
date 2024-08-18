@@ -10,6 +10,6 @@ Installation
 
 Credits
 -------
-* [SuicideMachine](https://www.twitch.tv/suicidemachine)
+* [SuicideMachine](https://www.twitch.tv/suimachine)
 * [Dalet](https://github.com/Dalet)
 * [pancaketaicho](https://www.twitch.tv/pancaketaicho)
